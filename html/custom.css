@@ -1,0 +1,47 @@
+body.jp-Notebook {
+	width: 100%;
+	max-width: 75em;
+	background-color: #fff;
+	padding: 1em 1em 3em 1em;
+}
+
+.jp-OutputPrompt, .jp-InputPrompt {
+	display: none;
+}
+
+pre {
+	overflow: auto;
+}
+
+
+
+@media (min-width: 43em) {
+	html {
+		background-color: #fefefe;
+	}
+	
+	body.jp-Notebook {
+		width: auto;
+		margin: 1em 2em 3em 2em;
+		box-shadow: 0 3px 9px rgba(0, 0, 0, 0.3);
+		padding: 1em 2em 3em 2em;
+	}
+	
+	h1 {
+		text-align: center;
+	}
+}
+
+@media (min-width: 62em) {
+	body.jp-Notebook {
+		width: 75%;
+		margin: 1em auto 3em auto;
+		padding: 1em 3em 3em 3em;
+	}
+}
+
+@media (min-width: 82em) {
+	body.jp-Notebook {
+		padding: 1em 4em 4em 4em;
+	}
+}
