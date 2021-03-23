@@ -5,11 +5,11 @@
 
 <title>Exercise 5 - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
-
 <link rel="stylesheet" type="text/css" href="custom.css" media="all">
 
+
 <style type="text/css">
-    pre { line-height: 125%; overflow:auto; }
+    pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -14277,7 +14277,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>$(\textrm{ii})\quad$ <em>Suppose</em> $\lambda$ <em>is an eigenvalue of</em> $A_1$ <em>and</em> $A_2.$ <em>Describe the eigenvectors of</em> $A$ <em>belonging to</em> $\lambda.$</p>
+<p>$(\textrm{ii})\quad$ <em>Suppose</em> $\lambda$ <em>is an eigenvalue of</em> $A_1$ <em>or</em> $A_2.$ <em>Describe the eigenvectors of</em> $A$ <em>belonging to</em> $\lambda.$</p>
 <p>If $A \big(\begin{smallmatrix} v_1 \\ v_2 \end{smallmatrix}\big) = \big(\begin{smallmatrix} A_1 v_1 \\ A_2 v_2 \end{smallmatrix}\big) = \big(\begin{smallmatrix} \lambda v_1 \\ \lambda v_2 \end{smallmatrix}\big)$ then $v_1$ and $v_2$ must be in the respective eigenspaces of $A_1$ and $A_2$ corresponding to $\lambda.$ Therefore $v = \big(\begin{smallmatrix} v_1 \\ v_2 \end{smallmatrix}\big)$ is an eigenvector of $A$ corresponding to $\lambda$ if and only if either both $v_1$ and $v_2$ are respective eigenvectors or just one is an eigenvector and the other the zero vector.</p>
 
 </div>
@@ -14289,7 +14289,7 @@ a.anchor-link {
 <li>Let $A_{ii} = Q_{ii} R_{ii} Q_{ii}^*$ for unitary matrices $Q_{ii}$ and upper triangular matrices $R_{ii},\ i=1,2$ and $Q = \big(\begin{smallmatrix} Q_{11} &amp; 0 \\ 0 &amp; Q_{22} \end{smallmatrix}\big),\ R = \big(\begin{smallmatrix} R_{11} &amp; Q_{11}^* A_{12} Q_{22} \\ 0 &amp; R_{22} \end{smallmatrix}\big).$ Then $Q$ is unitary, $R$ is an upper triangular matrix and the Schur decomposition of $A$ is $QRQ^* = \big(\begin{smallmatrix} Q_{11} R_{11} Q_{11}^* &amp; Q_{11} Q_{11}^* A_{12} Q_{22} Q_{22}^* \\ 0 &amp; Q_{22} R_{22} Q_{22}^* \end{smallmatrix}\big) = A.$</li>
 </ul>
 <ul>
-<li>Let $\lambda$ be an eigenvalue of $A_{11}$ and $A_{22.}$ From $A \big(\begin{smallmatrix} v_1 \\ v_2 \end{smallmatrix}\big) = \big(\begin{smallmatrix} A_{11} v_1 + A_{12} v_2 \\ A_2 v_2 \end{smallmatrix}\big) = \big(\begin{smallmatrix} \lambda v_1 \\ \lambda v_2 \end{smallmatrix}\big)$ follows that $v = \big(\begin{smallmatrix} v_1 \\ v_2 \end{smallmatrix}\big)$ is an eigenvector of $A$ corresponding to $\lambda$ if $v_1$ is an eigenvector of $A_{11}$ and $v_2\in\textrm{ker}(A_{12})\cap \textrm{E}(A_{22},\lambda)$ or if $v_1$ is an eigenvector of $A_{22}$ and $v_2 = A_{12}^{-1}(\lambda I - A_{11})v_1,$ where $\textrm{E}(A_{22},\lambda)$ denotes the eigenspace of $A_{22}$ for the eigenvalue $\lambda.$</li>
+<li>Let $\lambda$ be an eigenvalue of $A.$ If $v_1\in\textrm{E}(A_{11},\lambda)$ and $v_2\in\textrm{E}(A_{22},\lambda)\cap \textrm{ker}(A_{12})$ then $A \big(\begin{smallmatrix} v_1 \\ v_2 \end{smallmatrix}\big) = \big(\begin{smallmatrix} A_{11} v_1 + A_{12} v_2 \\ A_2 v_2 \end{smallmatrix}\big) = \big(\begin{smallmatrix} \lambda v_1 \\ \lambda v_2 \end{smallmatrix}\big)$ </li>
 </ul>
 
 </div>
