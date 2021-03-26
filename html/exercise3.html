@@ -14276,7 +14276,12 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Instead of calculating $S(u)$ and doing the matrix multiplications we apply the reflection to each column of $A$ and then to each row of $S(u)A.$ $\gamma$ uses $2n$ operations. Let $x$ be a column vector, then $S(u)x = x - (\gamma u^*x) u$ is $6n$ flops. Similarly for a row vector $y^\top,\ y^\top S(u) = y^\top - (\gamma y^\top u) u^*$ is also $6n$ flops. Applying those to first each column and then to each row of $A$ leaves us with a total of $12n^2$ flops. Just the matrix multiplication of the naive approach would already cost $4n^3-2n^2$ flops.</p>
+<p>Instead of determining $S(u)$ and doing the matrix multiplications we can rearrange the equation using associativity and distributivity to more efficiently group the calculations.</p>
+$$\begin{align*}
+S(u)AS^{-1}(u) &amp;= S(u)AS(u) = (I-\gamma u u^*)A(I-\gamma u u^*) \\
+&amp;= A-\gamma u u^* A - \gamma A u u^* + \gamma^2 u u^* A u u^* \\
+&amp;= A - (\gamma u) (u^* A) + \big( (u^* (A u)) (\gamma u) - A u \big) (\gamma u)^*
+\end{align*}$$<p>Matrix-vector multiplication takes $2n^2-n$ flops, matrix addition or subtraction $n^2$, inner product $2n-1$. Calculating $\gamma u$ once needs $3n$ flops. Adding all these flops in our formula with precomputed $Au$ and $\gamma u$ leaves us with $8n^2+\mathcal{o}(n)$ flops instead of $\mathcal{O}(n^3)$ flops with naive matrix multiplication.</p>
 
 </div>
 </div>
@@ -14297,13 +14302,8 @@ a.anchor-link {
     <span class="c">% returns matrix S*A*S for reflection S about hyperplane normal to u</span>
     
     <span class="n">gamma_u</span> <span class="p">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">u</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">u</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="p">;</span>
-    
-    <span class="c">% reflection S applied to each column of A</span>
-    <span class="n">T</span> <span class="p">=</span> <span class="n">A</span> <span class="o">-</span> <span class="n">gamma_u</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">A</span> <span class="o">.*</span> <span class="n">u</span><span class="p">;</span>
-    
-    <span class="c">% reflection S applied to each row of S*A</span>
-    <span class="n">T</span> <span class="p">=</span> <span class="n">T</span> <span class="o">-</span> <span class="n">T</span> <span class="o">*</span> <span class="n">gamma_u</span> <span class="o">.*</span> <span class="n">u</span><span class="o">&#39;</span><span class="p">;</span>
-    
+    <span class="n">Au</span> <span class="p">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">u</span><span class="p">;</span>
+    <span class="n">T</span> <span class="p">=</span> <span class="n">A</span> <span class="o">-</span> <span class="n">gamma_u</span> <span class="o">*</span> <span class="p">(</span><span class="n">u</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">u</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">Au</span><span class="p">)</span> <span class="o">*</span> <span class="n">gamma_u</span> <span class="o">-</span> <span class="n">Au</span><span class="p">)</span> <span class="o">*</span> <span class="n">gamma_u</span><span class="o">&#39;</span><span class="p">;</span>
 <span class="k">endfunction</span>
 </pre></div>
 
@@ -14351,8 +14351,8 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Elapsed time is 1.62633 seconds.
-Elapsed time is 38.0542 seconds.
+<pre>Elapsed time is 4.93947 seconds.
+Elapsed time is 40.5743 seconds.
 </pre>
 </div>
 </div>
@@ -14433,16 +14433,16 @@ Elapsed time is 38.0542 seconds.
 
 eigenvalues =
 
-   10.0000
-    1.0000
-    9.0000
-    8.0000
-    7.0000
-    2.0000
-    6.0000
-    3.0000
-    5.0000
-    4.0000
+  10.0000
+   1.0000
+   9.0000
+   8.0000
+   7.0000
+   2.0000
+   6.0000
+   3.0000
+   5.0000
+   4.0000
 
 </pre>
 </div>
