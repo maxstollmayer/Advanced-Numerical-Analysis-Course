@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Advanced Numerical Analysis Exercises - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Exercise 18 - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="custom.css" media="all">
 
@@ -14260,96 +14260,68 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Advanced-Numerical-Analysis">Advanced Numerical Analysis<a class="anchor-link" href="#Advanced-Numerical-Analysis">&#182;</a></h1>
-<h4 id="Exercises-solved-by-Max-Stollmayer">Exercises solved by Max Stollmayer<a class="anchor-link" href="#Exercises-solved-by-Max-Stollmayer">&#182;</a></h4>
-<br>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-1"><a href="exercise1.html">Exercise 1</a><a class="anchor-link" href="#Exercise-1">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-</ul>
+<h2 id="Exercise-18">Exercise 18<a class="anchor-link" href="#Exercise-18">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><em>Show that the matrix</em>
+$$ A =
+\begin{pmatrix}
+2 &amp; 1 &amp; 1 \\
+1 &amp; 2 &amp; 1 \\
+1 &amp; 1 &amp; 2
+\end{pmatrix}$$</p>
+<p><em>has the singular values 4, 1 and 1. Find two singular value decompositions of A such that the right singular vectors of the first SVD are not parallel to those of the second SVD.</em></p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-2"><a href="exercise2.html">Exercise 2</a><a class="anchor-link" href="#Exercise-2">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-25 updated solution with better implementation of the sparse matrix in $(\textrm{v})$</li>
-</ul>
+<p>To find the singular values of $A$ we solve $\det(A^*A-\lambda I) = (\lambda - 16)(\lambda - 1)^2 = 0$ for $\lambda$ and set $\sigma = \sqrt{\lambda}.$ Thus $A^*A$ has eigenvalues $16,1,1$ and $A$ singular values $4,1,1.$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-3"><a href="exercise3.html">Exercise 3</a><a class="anchor-link" href="#Exercise-3">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-25 updated solution with the algorithm discussed in class</li>
-</ul>
+<p>Solving $(A^*A-\lambda I) v = 0$ gives us the eigenvectors $(1, 1, 1)^\top, (-1, 0, 1)^\top$ and $(-1, 1, 0)^\top.$ Using Gram-Schmidt we get an orthonormal basis which is written as the following matrix.
+$$ V_1 =
+\begin{pmatrix}
+\frac{1}{\sqrt{3}} &amp; -\frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{6}} \\
+\frac{1}{\sqrt{3}} &amp; 0 &amp; \sqrt{\frac{2}{3}} \\
+\frac{1}{\sqrt{3}} &amp; \frac{1}{\sqrt{2}} &amp; - \frac{1}{\sqrt{6}}
+\end{pmatrix}$$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-5"><a href="exercise5.html">Exercise 5</a><a class="anchor-link" href="#Exercise-5">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-</ul>
+<p>Since $(-1, 1, 0)^\top$ is not orthogonal to $(-1, 0, 1)^\top$ we can instead use Gram Schmidt on a different order and get a different orthonormal basis.
+$$ V_2 =
+\begin{pmatrix}
+\frac{1}{\sqrt{3}} &amp; \frac{1}{\sqrt{6}} &amp; \frac{1}{\sqrt{2}} \\
+\frac{1}{\sqrt{3}} &amp; \frac{1}{\sqrt{6}} &amp; -\frac{1}{\sqrt{2}} \\
+\frac{1}{\sqrt{3}} &amp; -\sqrt{\frac{2}{3}} &amp; 0
+\end{pmatrix}$$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-8"><a href="exercise8.html">Exercise 8</a><a class="anchor-link" href="#Exercise-8">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-19 updated Latex formatting</li>
-</ul>
+<p>The left singular vectors can be calculated by $u=\sigma^{-1} A v$ and thus the two different singular value decompositions for A.</p>
+
 </div>
 </div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-10"><a href="exercise10.html">Exercise 10</a><a class="anchor-link" href="#Exercise-10">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-19 presented in class</li>
-<li>2021-03-19 updated Latex formatting</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-11"><a href="exercise11.html">Exercise 11</a><a class="anchor-link" href="#Exercise-11">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution, may be presented in class</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-12"><a href="exercise12.html">Exercise 12</a><a class="anchor-link" href="#Exercise-12">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-14"><a href="exercise14.html">Exercise 14</a><a class="anchor-link" href="#Exercise-14">&#182;</a></h3><ul>
-<li>2021-04-13 uploaded solution, may be presented in class</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-15"><a href="https://homepage.univie.ac.at/wissiakm16/AdvNumAnaEx15.pdf">Exercise 15</a><a class="anchor-link" href="#Exercise-15">&#182;</a></h3><ul>
-<li>2021-04-14 solved jointly with Manuel Wissiak</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-16"><a href="exercise16.html">Exercise 16</a><a class="anchor-link" href="#Exercise-16">&#182;</a></h3><ul>
-<li>2021-04-13 solved jointly with Manuel Wissiak, may be presented in class</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-18"><a href="exercise18.html">Exercise 18</a><a class="anchor-link" href="#Exercise-18">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution, may be presented in class</li>
-</ul></div></div>
-
 </body>
+
+
+
+
+
+
+
 </html>

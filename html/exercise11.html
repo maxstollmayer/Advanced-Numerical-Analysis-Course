@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Advanced Numerical Analysis Exercises - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Exercise 11 - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="custom.css" media="all">
 
@@ -14260,96 +14260,108 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Advanced-Numerical-Analysis">Advanced Numerical Analysis<a class="anchor-link" href="#Advanced-Numerical-Analysis">&#182;</a></h1>
-<h4 id="Exercises-solved-by-Max-Stollmayer">Exercises solved by Max Stollmayer<a class="anchor-link" href="#Exercises-solved-by-Max-Stollmayer">&#182;</a></h4>
-<br>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-1"><a href="exercise1.html">Exercise 1</a><a class="anchor-link" href="#Exercise-1">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-</ul>
+<h2 id="Exercise-11">Exercise 11<a class="anchor-link" href="#Exercise-11">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>$(\textrm{i})\quad$ <em>Suppose that</em> $A$ <em>is an invertible matrix with permuted triangular factorization</em> $PA=LU$ <em>where</em> $P$ <em>is a permutation matrix,</em> $L$ <em>is lower triangular, and</em> $U$ <em>is upper triangular. Show that the following block matrix factorization holds.</em></p>
+$$\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix}
+=
+\begin{pmatrix} P^{-1} &amp; 0 \\ 0 &amp; I \end{pmatrix}
+\begin{pmatrix} L &amp; 0 \\ CU^{-1} &amp; I \end{pmatrix}
+\begin{pmatrix} U &amp; L^{-1}PB \\ 0 &amp; D-CA^{-1}B \end{pmatrix}$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Multiplying the factorization matrices and simplifying yields the original matrix.</p>
+$$\begin{align*}
+\begin{pmatrix} P^{-1} &amp; 0 \\ 0 &amp; I \end{pmatrix}
+\begin{pmatrix} L &amp; 0 \\ CU^{-1} &amp; I \end{pmatrix}
+\begin{pmatrix} U &amp; L^{-1}PB \\ 0 &amp; D-CA^{-1}B \end{pmatrix}
+&amp;=
+\begin{pmatrix} P^{-1}L &amp; 0 \\ CU^{-1} &amp; I \end{pmatrix}
+\begin{pmatrix} U &amp; L^{-1}PB \\ 0 &amp; D-CA^{-1}B \end{pmatrix} \\
+&amp;=
+\begin{pmatrix} P^{-1}LU &amp; P^{-1}LL^{-1}PB \\ CU^{-1}U &amp; CU^{-1}L^{-1}PB+D-CA^{-1}B \end{pmatrix} \\
+&amp;=
+\begin{pmatrix} A &amp; P^{-1}PB \\ C &amp; CA^{-1}B+D-CA^{-1}B \end{pmatrix} \\
+&amp;=
+\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} \\
+\end{align*}$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>$(\textrm{ii})\quad$ <em>Use Laplace expansions to deduce from</em> $(\textrm{i})$ <em>that</em> $\det \big(\begin{smallmatrix} A &amp; B \\ C &amp; D \end{smallmatrix}\big) = \det A \det(D-CA^{-1}B)$ if $\det A \ne 0.$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-2"><a href="exercise2.html">Exercise 2</a><a class="anchor-link" href="#Exercise-2">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-25 updated solution with better implementation of the sparse matrix in $(\textrm{v})$</li>
-</ul>
+<p>$A$ has an LU decomposition since $\det A \ne 0.$ Using the multiplicity of the determinant on the factorization from above gives us the following.</p>
+$$\det\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} =
+\det \begin{pmatrix} P^{-1} &amp; 0 \\ 0 &amp; I \end{pmatrix}
+\det \begin{pmatrix} L &amp; 0 \\ CU^{-1} &amp; I \end{pmatrix}
+\det \begin{pmatrix} U &amp; L^{-1}PB \\ 0 &amp; D-CA^{-1}B \end{pmatrix}$$$$\det \begin{pmatrix} P^{-1} &amp; 0 \\ 0 &amp; I \end{pmatrix} = \det P^{-1} \det I + 0\cdot \dots - 0 \cdot \dots = \det P^{-1}$$$$\det \begin{pmatrix} L &amp; 0 \\ CU^{-1} &amp; I \end{pmatrix} = \det L \det I + 0\cdot \dots - 0 \cdot \dots = \det L$$$$\det \begin{pmatrix} U &amp; L^{-1}PB \\ 0 &amp; D-CA^{-1}B \end{pmatrix} = \det U \det(D-CA^{-1}B) + 0\cdot \dots - 0 \cdot \dots$$$$\Rightarrow \det\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} = \det P^{-1} \det L \det U \det(D-CA^{-1}B) = \det(P^{-1}LU)\det(D-CA^{-1}B) = \det A \det(D-CA^{-1}B)$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>$(\textrm{iii})\quad$ <em>Deduce from</em> $(\textrm{ii})$ <em>that</em> $\det \big(\begin{smallmatrix} A &amp; B \\ C &amp; D \end{smallmatrix}\big) = \det A \det D$ <em>if</em> $B=0$ <em>or</em> $C=0$ <em>even when</em> $A$ <em>is singular.</em></p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-3"><a href="exercise3.html">Exercise 3</a><a class="anchor-link" href="#Exercise-3">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-25 updated solution with the algorithm discussed in class</li>
-</ul>
+<p>If $B=0$ or $C=0$ and $A$ is not singular then $\det \big(\begin{smallmatrix} A &amp; B \\ C &amp; D \end{smallmatrix}\big) = \det A \det(D-CA^{-1}B) = \det A \det D.$ On the other hand if $A$ is singular then $\det A = 0$ and $\det \big(\begin{smallmatrix} A &amp; B \\ C &amp; D \end{smallmatrix}\big) = \det A + 0\cdot \dots - 0 \cdot \dots = \det A = 0 = \det A \det D.$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-5"><a href="exercise5.html">Exercise 5</a><a class="anchor-link" href="#Exercise-5">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-</ul>
-
+<p>$(\textrm{iv})\quad$ <em>Prove the following identity for block triangular matrices.</em></p>
+$$\det\begin{pmatrix}
+A_{11} &amp; A_{12} &amp; \cdots &amp; A_{1n} \\
+ &amp; A_{22} &amp; \cdots &amp; A_{2n} \\
+ &amp; &amp; \ddots &amp; \vdots \\
+ &amp; &amp; &amp; A_{nn} \end{pmatrix}
+= \det A_{11} \det A_{22} \dots \det A_{nn}$$
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-8"><a href="exercise8.html">Exercise 8</a><a class="anchor-link" href="#Exercise-8">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-19 updated Latex formatting</li>
-</ul>
+<p>The result follows iteratively from $(\textrm{iii}).$</p>
+$$\begin{align*}
+\det
+\begin{pmatrix}
+A_{11} &amp; A_{12} &amp; \cdots &amp; A_{1n} \\
+ &amp; A_{22} &amp; \cdots &amp; A_{2n} \\
+ &amp; &amp; \ddots &amp; \vdots \\
+ &amp; &amp; &amp; A_{nn}
+\end{pmatrix}
+&amp;= \det A_{11}
+\det
+\begin{pmatrix}
+A_{22} &amp; \cdots &amp; A_{2n} \\
+&amp; \ddots &amp; \vdots \\
+&amp; &amp; A_{nn}
+\end{pmatrix} \\
+&amp;= \dots = \det A_{11} \det A_{22} \dots \det A_{nn}
+\end{align*}$$
 </div>
 </div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-10"><a href="exercise10.html">Exercise 10</a><a class="anchor-link" href="#Exercise-10">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-19 presented in class</li>
-<li>2021-03-19 updated Latex formatting</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-11"><a href="exercise11.html">Exercise 11</a><a class="anchor-link" href="#Exercise-11">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution, may be presented in class</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-12"><a href="exercise12.html">Exercise 12</a><a class="anchor-link" href="#Exercise-12">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-14"><a href="exercise14.html">Exercise 14</a><a class="anchor-link" href="#Exercise-14">&#182;</a></h3><ul>
-<li>2021-04-13 uploaded solution, may be presented in class</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-15"><a href="https://homepage.univie.ac.at/wissiakm16/AdvNumAnaEx15.pdf">Exercise 15</a><a class="anchor-link" href="#Exercise-15">&#182;</a></h3><ul>
-<li>2021-04-14 solved jointly with Manuel Wissiak</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-16"><a href="exercise16.html">Exercise 16</a><a class="anchor-link" href="#Exercise-16">&#182;</a></h3><ul>
-<li>2021-04-13 solved jointly with Manuel Wissiak, may be presented in class</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-18"><a href="exercise18.html">Exercise 18</a><a class="anchor-link" href="#Exercise-18">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution, may be presented in class</li>
-</ul></div></div>
-
 </body>
+
+
+
+
+
+
+
 </html>
