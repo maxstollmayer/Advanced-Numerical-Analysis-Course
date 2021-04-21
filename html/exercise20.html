@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Advanced Numerical Analysis Exercises - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Exercise 20 - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="custom.css" media="all">
 
@@ -14260,114 +14260,72 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Advanced-Numerical-Analysis">Advanced Numerical Analysis<a class="anchor-link" href="#Advanced-Numerical-Analysis">&#182;</a></h1>
-<h4 id="Exercises-solved-by-Max-Stollmayer">Exercises solved by Max Stollmayer<a class="anchor-link" href="#Exercises-solved-by-Max-Stollmayer">&#182;</a></h4>
-<br>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-1"><a href="exercise1.html">Exercise 1</a><a class="anchor-link" href="#Exercise-1">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-</ul>
-
+<h2 id="Exercise-20">Exercise 20<a class="anchor-link" href="#Exercise-20">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-2"><a href="exercise2.html">Exercise 2</a><a class="anchor-link" href="#Exercise-2">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-25 updated solution with better implementation of the sparse matrix in $(\textrm{v})$</li>
-</ul>
+<p><em>Denote by</em> $V^\bot$ <em>the vector space of vectors othogonal to all vectors in a subspace</em> $V$ <em>of</em> $\mathbb{C}^n.$ <em>Write</em> $\sigma_k(A)$ <em>for the</em> $k$<em>-th singular value of</em> $A\in\mathbb{C}^{m \times n}.$ <em>Show:</em></p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-3"><a href="exercise3.html">Exercise 3</a><a class="anchor-link" href="#Exercise-3">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-25 updated solution with the algorithm discussed in class</li>
-</ul>
+<p>$\displaystyle\textrm{(i)} \quad \sigma_k(A) = \min_{\dim V &lt;k} \max_{x\in V^\bot\setminus\{0\}} \frac{|\!|Ax|\!|_2}{|\!|x|\!|_2}$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-5"><a href="exercise5.html">Exercise 5</a><a class="anchor-link" href="#Exercise-5">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-</ul>
+<p>Let $A = U \Sigma V^*$ be the singular value decomposition of $A.$ Since $\max_{x\in V^\bot,||x||=1} |\!|Ax|\!|_2 = \max |\!|U \Sigma V^* x|\!|_2 = \max |\!|\Sigma V^* x|\!|_2 = \max_{y\in V^\bot,||y||=1} |\!|\Sigma y|\!|_2.$ we can only consider diagonal matrices with non-increasing diagonals.</p>
+<p>Let $A$ now be a rectangular diagonal matrix with entries $\sigma_1 \ge \dots \ge \sigma_n$ which are also its singular values. Then $\max_{x\in V^\bot, ||x||=1} |\!|A x|\!|_2 \le |\!|A e_k|\!|_2 = \sigma_j$ for $j=\min\{i \in \{1,\dots,n\} \ | \ e_i \in V^\bot\}.$ Since the $\sigma_i$ are non-increasing the minimum is obtained by setting $V=\textrm{span}\{e_1,\dots,e_{k-1}\}$ and therefore $\min_{\dim V &lt; k} \max_{x\in V^\bot, ||x||=1} |\!|A x|\!|_2 = \sigma_k$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-8"><a href="exercise8.html">Exercise 8</a><a class="anchor-link" href="#Exercise-8">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-19 updated Latex formatting</li>
-</ul>
+<p>$\displaystyle\textrm{(ii)} \quad \sigma_{i+k-1}(A+B) \le \sigma_i(A) + \sigma_k(B) \quad \forall A, B \in \mathbb{C}^{m \times n}$</p>
+
 </div>
 </div>
-
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-10"><a href="exercise10.html">Exercise 10</a><a class="anchor-link" href="#Exercise-10">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-19 presented in class</li>
-<li>2021-03-19 updated Latex formatting</li>
-</ul></div></div>
-
+<p>If $U_1 + U_2 \subset V$ then $V^\bot \subset U_1^\bot + U_2^\bot.$ Therefore we can split the minimum to both summands in the following calculation.</p>
+$$\begin{align*}
+\sigma_{i+k-1}(A+B) &amp;= \min_{\dim V &lt; i+k-1} \max_{x\in V^\bot\\ ||x||=1} |\!|(A+B)x|\!|_2 \\
+&amp;\le \min \big( \max |\!|Ax|\!|_2 + \max |\!|Bx|\!|_2 \big) \\
+&amp;\le \min_{\dim V &lt; i+k-1\\ U_1+U_2\subset V} \big( \max_{x\in U_1^\bot\\ ||x||=1} |\!|Ax|\!|_2 + \max_{x\in U_2^\bot\\ ||x||=1} |\!|Bx|\!|_2 \big)\\
+&amp;\le \min_{\dim U_1 &lt; i} \max |\!|Ax|\!|_2 + \min_{\dim U_2 &lt; k} \max |\!|Bx|\!|_2\\
+&amp;= \sigma_i(A) + \sigma_k(A)
+\end{align*}$$
+</div>
+</div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-11"><a href="exercise11.html">Exercise 11</a><a class="anchor-link" href="#Exercise-11">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution, may be presented in class</li>
-</ul></div></div>
+<p>$\displaystyle\textrm{(iii)} \quad \sigma_k(AB) \le \min\{\sigma_k(A) |\!|B|\!|_2,\ |\!|A|\!|_2 \sigma_k(B)\} \quad \forall A \in \mathbb{C}^{m \times n},\ B \in \mathbb{C}^{n \times p}$</p>
 
+</div>
+</div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-12"><a href="exercise12.html">Exercise 12</a><a class="anchor-link" href="#Exercise-12">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution</li>
-</ul></div></div>
+$$\begin{align*}
+\sigma_k(A B) &amp;= \min \max |\!|A B x|\!|_2 \le \min \max |\!|A|\!|_2 |\!|Bx|\!|_2 = |\!|A|\!|_2 \sigma_k(B) \\
+\sigma_k(A B) &amp;= \sigma(B^* A^*) = \min \max |\!|B^* A^*x|\!|_2 \le |\!|B^*|\!|_2 \sigma_k(A^*) = |\!|B|\!|_2 \sigma_k(A) \\
+\Rightarrow \sigma_k(AB) &amp;\le \min\{\sigma_k(A) |\!|B|\!|_2,\ |\!|A|\!|_2 \sigma_k(B)\}
+\end{align*}$$<p>Where we used $\sigma_k(A) = \sigma_k(A^*)$ and $|\!|A|\!|_2 = \sigma_1(A) = |\!|A^*|\!|_2$ in the second estimate.</p>
 
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-14"><a href="exercise14.html">Exercise 14</a><a class="anchor-link" href="#Exercise-14">&#182;</a></h3><ul>
-<li>2021-04-13 uploaded solution, may be presented in class</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-15"><a href="https://homepage.univie.ac.at/wissiakm16/AdvNumAnaEx15.pdf">Exercise 15</a><a class="anchor-link" href="#Exercise-15">&#182;</a></h3><ul>
-<li>2021-04-14 solved jointly with Manuel Wissiak</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-16"><a href="exercise16.html">Exercise 16</a><a class="anchor-link" href="#Exercise-16">&#182;</a></h3><ul>
-<li>2021-04-13 solved jointly with Manuel Wissiak</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-18"><a href="exercise18.html">Exercise 18</a><a class="anchor-link" href="#Exercise-18">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-19"><a href="exercise19.html">Exercise 19</a><a class="anchor-link" href="#Exercise-19">&#182;</a></h3><ul>
-<li>2021-04-21 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-20"><a href="exercise20.html">Exercise 20</a><a class="anchor-link" href="#Exercise-20">&#182;</a></h3><ul>
-<li>2021-04-21 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-21"><a href="exercise21.html">Exercise 21</a><a class="anchor-link" href="#Exercise-21">&#182;</a></h3><ul>
-<li>2021-04-21 uploaded solution</li>
-</ul></div></div>
-
+</div>
+</div>
 </body>
+
+
+
+
+
+
+
 </html>
