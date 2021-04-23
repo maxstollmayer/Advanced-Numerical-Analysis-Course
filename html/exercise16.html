@@ -14269,16 +14269,19 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><em>A rod with circular cross section, supported and hinged at both ends, is loaded with a force</em> $P$ <em>along its symmetry axis. Physics tells us that the rod buckles once this force exceeds a value</em> $P_1,$ <em>given by the smallest eigenvalue of the boundary-eigenvalue problem for the displacement</em> $y(x)$ <em>from the unloaded position.</em></p>
-<p><em>Determine approximately the smallest eigenvalue of this problem for</em> $\alpha = 10.132115.$</p>
-<p><em>Calculate for</em> $n = 15$ <em>its smallest eigenvalue by inverse iteration with the Rayleigh quotient shift</em> $\sigma_k = \frac{(u^{(k)})^* A u^{(k)}}{(u^{(k)})^* u^{(k)}}.$ <em>In each iteration give the values of</em> $\sigma_k$ <em>and the corresponding error bound</em> $\Delta_k = \frac{||A u^{(k)} - \sigma_k u^{(k)}||}{||u^{(k)}||_2}.$ <em>Compare with</em> $P = 100.$</p>
+<p><em>A rod with circular cross section, supported and hinged at both ends, is loaded with a force</em> $P$ <em>along its symmetry axis. Physics tells us that the rod buckles once this force exceeds a value</em> $P_1,$ *given by the smallest eigenvalue of the boundary-eigenvalue problem</p>
+$$\begin{cases}
+\alpha^{-1} P y(x) + y''(x) = 0\\
+y(0) = y(1) = 0
+\end{cases}$$<p>for the displacement<em> $y(x)$ </em>from the unloaded position.*</p>
+<p><em>For</em> $\alpha = 10.132115$ <em>and</em> $n = 15$ <em>approximately determine its smallest eigenvalue by inverse iteration with the Rayleigh quotient shift</em> $\sigma_k = \frac{(u^{(k)})^* A u^{(k)}}{(u^{(k)})^* u^{(k)}}.$ <em>In each iteration give the values of</em> $\sigma_k$ <em>and the corresponding error bound</em> $\Delta_k = \frac{||A u^{(k)} - \sigma_k u^{(k)}||}{||u^{(k)}||_2}.$ <em>Compare with</em> $P = 100.$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>For $n\in\mathbb{N}$ let $h := \frac{1}{n+1}$ and for $k\in\{0,\dots,n+1\}$ define $x_k := kh$ and $y_k := y(x_k).$ Then $y''(x_k)$ can be approximated by the second-order central difference $\frac{y_{k-1}-2y_k+y_{k+1}}{h^2}.$</p>
-<p>Substituting into the differential equation yields $\alpha^{-1} P y_k + \frac{y_{k-1}-2y_k+y_{k+1}}{h^2} \iff P y_k = \frac{\alpha}{h^2} (2y_k -y_{k-1}-y_{k+1}) \ \forall k \in \{1,\dots,n\},$ also $y_0 = y_{n+1} = 0.$ Therefore we can write this as an eigenvalue problem $Au = Pu$ for $u=(y_1,\dots,y_n)^\top$ and
+<p>For $n\in\mathbb{N}$ let $h := \frac{1}{n+1}$ and for $k\in\{0,\dots,n+1\}$ define the discretization $x_k := kh$ and $y_k := y(x_k).$ Then $y''(x_k)$ can be approximated by the second-order central difference $y''(x_k) \approx \frac{y_{k-1}-2y_k+y_{k+1}}{h^2}.$</p>
+<p>Substituting into the differential equation yields $\alpha^{-1} P y_k + \frac{y_{k-1}-2y_k+y_{k+1}}{h^2} = 0 \iff P y_k = \frac{\alpha}{h^2} (2y_k -y_{k-1}-y_{k+1}) \ \forall k \in \{1,\dots,n\},$ also $y_0 = y_{n+1} = 0.$ Therefore we can write this as an eigenvalue problem $Au = Pu$ for $u=(y_1,\dots,y_n)^\top$ and
 $$ A = \frac{\alpha}{h^2}
 \begin{pmatrix}
  2 &amp; -1  \\
@@ -14298,7 +14301,7 @@ $$ A = \frac{\alpha}{h^2}
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-octave"><pre><span></span><span class="n">alpha</span> <span class="p">=</span> <span class="mf">10.132115</span><span class="p">;</span>
@@ -14309,17 +14312,28 @@ $$ A = \frac{\alpha}{h^2}
 <span class="n">u</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="n">A</span> <span class="p">=</span> <span class="n">alpha</span> <span class="o">/</span> <span class="n">h</span>^<span class="mi">2</span> <span class="o">*</span> <span class="nb">spdiags</span><span class="p">(</span><span class="o">-</span><span class="nb">ones</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">speye</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
 
-<span class="k">for</span> <span class="n">k</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">9</span>
+<span class="n">max_iterations</span> <span class="p">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="n">error_bound_old</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">1000</span>
     <span class="nb">shift</span> <span class="p">=</span> <span class="p">(</span><span class="n">u</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">u</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">u</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">u</span><span class="p">);</span>
-    <span class="n">u</span> <span class="p">=</span> <span class="n">linsolve</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="nb">shift</span> <span class="o">*</span> <span class="nb">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">u</span><span class="p">);</span>
+    
+    <span class="n">u</span> <span class="p">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="nb">shift</span> <span class="o">*</span> <span class="nb">speye</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">\</span> <span class="n">u</span><span class="p">;</span>
     <span class="p">[</span><span class="n">max_value</span><span class="p">,</span> <span class="nb">index</span><span class="p">]</span> <span class="p">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">u</span><span class="p">));</span>
     <span class="n">u</span> <span class="p">=</span> <span class="n">u</span> <span class="o">/</span> <span class="n">u</span><span class="p">(</span><span class="nb">index</span><span class="p">);</span>
+    
     <span class="n">error_bound</span> <span class="p">=</span> <span class="nb">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">*</span> <span class="n">u</span> <span class="o">-</span> <span class="nb">shift</span> <span class="o">*</span> <span class="n">u</span><span class="p">)</span> <span class="o">/</span> <span class="nb">norm</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
     
-    <span class="nb">printf</span><span class="p">(</span><span class="s">&quot;shift_%d = %f,  error_bound_%d = %e\n&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="nb">shift</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">error_bound</span><span class="p">)</span>    
+    <span class="nb">printf</span><span class="p">(</span><span class="s">&quot;shift_%d = %17.13f,  error_bound_%d = %e\n&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="nb">shift</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">error_bound</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">error_bound</span> <span class="o">-</span> <span class="n">error_bound_old</span><span class="p">)</span> <span class="o">&lt;</span><span class="p">=</span> <span class="mf">1e-8</span>
+        <span class="k">break</span>
+    <span class="k">endif</span>
+    
+    <span class="n">error_bound_old</span> <span class="p">=</span> <span class="n">error_bound</span><span class="p">;</span>
 <span class="k">endfor</span>
 
-<span class="nb">printf</span><span class="p">(</span><span class="s">&quot;difference to P: %e&quot;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">shift</span> <span class="o">-</span> <span class="n">P</span><span class="p">))</span>
+<span class="nb">printf</span><span class="p">(</span><span class="s">&quot;\ndifference to P: %g&quot;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">shift</span> <span class="o">-</span> <span class="n">P</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14339,16 +14353,13 @@ $$ A = \frac{\alpha}{h^2}
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>shift_1 = 345.842859,  error_bound_1 = 2.625258e+02
-shift_2 = 118.481327,  error_bound_2 = 1.902161e+01
-shift_3 = 99.690163,  error_bound_3 = 1.105995e-02
-shift_4 = 99.679103,  error_bound_4 = 2.243581e-12
-shift_5 = 99.679103,  error_bound_5 = 3.323782e-13
-shift_6 = 99.679103,  error_bound_6 = 3.183324e-13
-shift_7 = 99.679103,  error_bound_7 = 3.183621e-13
-shift_8 = 99.679103,  error_bound_8 = 3.183621e-13
-shift_9 = 99.679103,  error_bound_9 = 3.183621e-13
-difference to P: 3.208967e-01</pre>
+<pre>shift_1 = 345.8428586666667,  error_bound_1 = 2.625258e+02
+shift_2 = 118.4813274184680,  error_bound_2 = 1.902161e+01
+shift_3 =  99.6901631786867,  error_bound_3 = 1.105995e-02
+shift_4 =  99.6791033073803,  error_bound_4 = 2.243581e-12
+shift_5 =  99.6791033073781,  error_bound_5 = 3.323782e-13
+
+difference to P: 0.320897</pre>
 </div>
 </div>
 
@@ -14356,6 +14367,12 @@ difference to P: 3.208967e-01</pre>
 
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Observe that the shift very quickly converges but the difference to $P$ is larger than the error bounds because for $n=15$ the discretization error is quite large.</p>
+
+</div>
 </div>
 </body>
 
