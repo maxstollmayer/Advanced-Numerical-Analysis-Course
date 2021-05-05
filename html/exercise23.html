@@ -14259,12 +14259,7 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Advanced-Numerical-Analysis">Advanced Numerical Analysis<a class="anchor-link" href="#Advanced-Numerical-Analysis">&#182;</a></h1>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Exercise-23">Exercise 23<a class="anchor-link" href="#Exercise-23">&#182;</a></h2>
+<h1 id="Advanced-Numerical-Analysis">Advanced Numerical Analysis<a class="anchor-link" href="#Advanced-Numerical-Analysis">&#182;</a></h1><h2 id="Exercise-23">Exercise 23<a class="anchor-link" href="#Exercise-23">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14283,12 +14278,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>$\textrm{(ii)} \quad$ <em>Show that the matrix</em> $A = \big(\begin{smallmatrix} 1 &amp; 2 \\ −1 &amp; −2 \end{smallmatrix}\big)$ <em>is stable but the one-sided Lipschitz constant</em> $\mu$ <em>is strictly greater than $1.$</em></p>
+$$ $$<p>$\textrm{(ii)} \quad$ <em>Show that the matrix</em> $A = \big(\begin{smallmatrix} 1 &amp; 2 \\ −1 &amp; −2 \end{smallmatrix}\big)$ <em>is stable but the one-sided Lipschitz constant</em> $\mu$ <em>is strictly greater than $1.$</em></p>
 
 </div>
 </div>
@@ -14307,18 +14297,14 @@ $$y(t) = (I-A^2) y_\varepsilon + (\varepsilon_1 + 2 \varepsilon_2) (cosh(t) - si
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+$$ $$<p>$\textrm{(iii)} \quad$ <em>Find a symmetric, positive definite matrix</em> $B$ <em>such that the transformed function</em> $z(t) := B y(t)$ <em>has the one-sided Lipschitz constant</em> $\mu = 0.$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>$\textrm{(iii)} \quad$ <em>Find a symmetric, positive definite matrix</em> $B$ <em>such that the transformed function</em> $z(t) := B y(t)$ <em>has the one-sided Lipschitz constant</em> $\mu = 0.$</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>If $B$ is an eigenbasis transformation then $z' = B y' = B A y = B A B^{-1} z = \Lambda z,$ where $\Lambda$ is the eigenvalue diagonalization of $A.$ Then $\textrm{Re}(x^* \Lambda x) = \textrm{Re}(\sum_{j=1}^n \lambda_j |x_j|^2) = \sum_{j=1}^n \textrm{Re}(\lambda_j) |x_j|^2 \le \textrm{Re}(\lambda_{\max}) |\!|x|\!|_2^2 = \mu |\!|x|\!|_2^2,$ where $\lambda_{\max}$ is the eigenvalue of $A$ with the largest real part. Since the eigenvalues of $A$ can have arbitrarily large real parts, $\mu$ mustn't be $0$ in general.</p>
+<p>$A$ has eigenvectors $(2, -1)^\top$ and $(-1, 1)^\top.$ Let $B = \big( \begin{smallmatrix} 2 &amp; -1 \\ -1 &amp; 1 \end{smallmatrix} \big)$ then $B$ is symmetric, positive definite and has inverse $B^{-1} = \big( \begin{smallmatrix} 2 &amp; -1 \\ -1 &amp; 1 \end{smallmatrix} \big).$ Now the transformed system is $z' = B A B^{-1} z = \big( \begin{smallmatrix} 0 &amp; 0 \\ 0 &amp; -1 \end{smallmatrix} \big) z,$ whose matrix is diagonal, thus Hermitian and has eigenvalues $0$ and $-1$. Therefore $\mu$ can be chosen as $0.$</p>
+<p>This does not work in general though. For $A \in \mathbb{C}^{n \times n}$ and $B$ an eigenbasis transformation of $A$ then $z' = B y' = B A y = B A B^{-1} z = \Lambda z,$ where $\Lambda$ is the eigenvalue diagonalization of $A.$ Then $\textrm{Re}(x^* \Lambda x) = \textrm{Re}(\sum_{j=1}^n \lambda_j |x_j|^2) = \sum_{j=1}^n \textrm{Re}(\lambda_j) |x_j|^2 \le \textrm{Re}(\lambda_{\max}) |\!|x|\!|_2^2 = \mu |\!|x|\!|_2^2,$ where $\lambda_{\max}$ is the eigenvalue of $A$ with the largest real part. Since the eigenvalues of $A$ can have arbitrarily large real parts, $\mu$ mustn't be $0$ in general.</p>
 
 </div>
 </div>
