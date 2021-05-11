@@ -14272,7 +14272,16 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Any matrix can be decomposed as $A = A_+ + A_-,$ where $A_+ := \frac{A+A^*}{2}$ is the Hermitian and $A_- := \frac{A-A^*}{2}$ the anti-Hermitian part. Since $A_+$ is naturally Hermitian $x^* A_+ x \in\mathbb{R} \quad\forall x \in\mathbb{C}^n$ and because $A_-$ is anti-Hermitian $x^* A_- x = \omega i \quad\forall x \in\mathbb{C}^n$ for a suitable $\omega\in\mathbb{R}.$ Therefore $\textrm{Re}(x^* A x) = x^* A_+ x \quad\forall x \in\mathbb{C}^n$</p>
 <p>$(\Rightarrow) \quad$ Let $x$ be an eigenvector to the eigenvalue $\lambda$ of $A_+.$ Then $\lambda |\!|x|\!|_2^2 = \lambda x^* x = x^* A_+ x = \textrm{Re}(x^* A x) \le \mu |\!|x|\!|_2^2$ and thus $\lambda \le \mu$ for every eigenvalue of the Hermitian part.</p>
-<p>$(\Leftarrow) \quad$ Let $\lambda$ be the biggest eigenvalue of $A_+$. Then $|\!|A_+ x|\!|_2 \le |\!|A_+|\!|_2 |\!|x|\!|_2 = \lambda |\!|x|\!|_2$ and by the Cauchy-Schwarz inequality we obtain the desired one-sided Liptschitz condition $\textrm{Re}(x^* A x) = x^* A_+ x \le |\!|x^*|\!|_2 |\!|A_+ x|\!|_2 \le |\!|x^*|\!|_2 \lambda |\!|x|\!|_2 \le \mu |\!|x|\!|_2^2.$</p>
+<p>$(\Leftarrow) \quad$ Let $\lambda_\max(M)$ be the largest and $\lambda_\min(M)$ the smallest eigenvalue of a matrix $M$ which has only real eigenvalues. Then we can write</p>
+$$\begin{align*}
+\textrm{Re}(x^* A x) &amp;= x^* A_+ x = \lambda_\max(A_+) x^* x + x^* (A_+ - \lambda_\min(A_+) I) x \\
+&amp;\le \lambda_\min(A_+) \ |\!|x|\!|_2^2 + |\!|x|\!|_2 \ |\!|A_+ - \lambda_\min(A_+) I|\!|_2 \ |\!|x|\!|_2 \\
+&amp;\le \lambda_\min(A_+) \ |\!|x|\!|_2^2 + |\!|x|\!|_2 \ |\lambda_\max(A_+ - \lambda_\min I)| \ |\!|x|\!|_2 \\
+&amp;= \lambda_\min(A_+) \ |\!|x|\!|_2^2 + \lambda_\max(A_+ - \lambda_\min I) \ |\!|x|\!|_2^2 \\
+&amp;= \lambda_\min(A_+) \ |\!|x|\!|_2^2 + \lambda_\max(A_+) - \lambda_\min(A_+)) \ |\!|x|\!|_2^2 \\
+&amp;= \lambda_\max(A_+) \ |\!|x|\!|_2^2 \\
+&amp;\le \mu |\!|x|\!|_2^2
+\end{align*}$$<p>since $A_+ - \lambda_\min(A_+) I$ only has eigenvalues that are greater or equal to 0.</p>
 
 </div>
 </div>
@@ -14304,7 +14313,7 @@ $$ $$<p>$\textrm{(iii)} \quad$ <em>Find a symmetric, positive definite matrix</e
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>$A$ has eigenvectors $(2, -1)^\top$ and $(-1, 1)^\top.$ Let $B = \big( \begin{smallmatrix} 2 &amp; -1 \\ -1 &amp; 1 \end{smallmatrix} \big)$ then $B$ is symmetric, positive definite and has inverse $B^{-1} = \big( \begin{smallmatrix} 2 &amp; -1 \\ -1 &amp; 1 \end{smallmatrix} \big).$ Now the transformed system is $z' = B A B^{-1} z = \big( \begin{smallmatrix} 0 &amp; 0 \\ 0 &amp; -1 \end{smallmatrix} \big) z,$ whose matrix is diagonal, thus Hermitian and has eigenvalues $0$ and $-1$. Therefore $\mu$ can be chosen as $0.$</p>
-<p>This does not work in general though. For $A \in \mathbb{C}^{n \times n}$ and $B$ an eigenbasis transformation of $A$ then $z' = B y' = B A y = B A B^{-1} z = \Lambda z,$ where $\Lambda$ is the eigenvalue diagonalization of $A.$ Then $\textrm{Re}(x^* \Lambda x) = \textrm{Re}(\sum_{j=1}^n \lambda_j |x_j|^2) = \sum_{j=1}^n \textrm{Re}(\lambda_j) |x_j|^2 \le \textrm{Re}(\lambda_{\max}) |\!|x|\!|_2^2 = \mu |\!|x|\!|_2^2,$ where $\lambda_{\max}$ is the eigenvalue of $A$ with the largest real part. Since the eigenvalues of $A$ can have arbitrarily large real parts, $\mu$ mustn't be $0$ in general.</p>
+<p>In general for an $A \in \mathbb{C}^{n \times n}$ and an eigenbasis transformation $B$ of $A$ we have $z' = B y' = B A y = B A B^{-1} z = \Lambda z,$ where $\Lambda$ is the eigenvalue diagonalization of $A.$ Then $\textrm{Re}(x^* \Lambda x) = \textrm{Re}(\sum_{j=1}^n \lambda_j |x_j|^2) = \sum_{j=1}^n \textrm{Re}(\lambda_j) |x_j|^2 \le \textrm{Re}(\lambda_\max) |\!|x|\!|_2^2 = \mu |\!|x|\!|_2^2,$ where $\lambda_\max$ is the eigenvalue of $A$ with the largest real part.</p>
 
 </div>
 </div>
