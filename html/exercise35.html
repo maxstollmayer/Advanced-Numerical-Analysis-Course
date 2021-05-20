@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Exercise 33 - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Exercise 35 - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="custom.css" media="all">
 
@@ -14259,64 +14259,68 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Advanced-Numerical-Analysis">Advanced Numerical Analysis<a class="anchor-link" href="#Advanced-Numerical-Analysis">&#182;</a></h1><h2 id="Exercise-33">Exercise 33<a class="anchor-link" href="#Exercise-33">&#182;</a></h2>
+<h1 id="Advanced-Numerical-Analysis">Advanced Numerical Analysis<a class="anchor-link" href="#Advanced-Numerical-Analysis">&#182;</a></h1><h2 id="Exercise-35">Exercise 35<a class="anchor-link" href="#Exercise-35">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><em>Show that the implicit trapezoidal rule</em> $y^{i+1} = y^i + \frac{h_i}{2} \big( F(y^i) + F(y^{i+1}) \big)$</p>
+<p><em>To solve the two-point boundary value problem</em></p>
+$$\begin{cases}
+y''(t) = q(t) y(t) + g(t) \\
+y(a) = \alpha, y(b) = \beta
+\end{cases}$$<p><em>one may discretize the second derivatives on a grid</em> $t_i = a + i h,$ <em>where</em> $h := \frac{b - a}{n + 1},$ <em>approximating them by central difference quotients</em> $\Delta^2 y^i := \frac{y^{i+1} - 2 y^i + y^{i-1}}{h^2},$ <em>where the</em> $y^i$ <em>are approximations to</em> $y(t_i)$ <em>for</em> $i = 1, \dots, n.$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>$\textrm{(i)} \quad$ <em>has order of consistency 2.</em></p>
+$$ $$<p>$\textrm{(i)} \quad$ <em>Substitute the quotients</em> $\Delta^2 y^i$ <em>into the differential equation and take account of the boundary conditions</em> $y^0 = \alpha, y^{n+1} = \beta$ <em>to derive a linear system of equations for</em> $y^1, \dots, y^n.$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Consider a single step $y^1 = y^0 + \frac{h}{2} \big( F(y^0) + F(y^1) \big)$ from $t$ to $t+h,$ where $y^0 = y(t)$ is known exactly. Then the order of the local discretization error can be determined using Taylor expansions.</p>
-$$\begin{align*}
-y(t+h) - y^1 &amp;= y(t+h) - y(t) - \frac{h}{2} \big( F(y(t)) + F(y(t+h)) \big) \\
-&amp;= y(t+h) - y(t) - \frac{h}{2} \big( y'(t) + y'(t+h) \big) \\
-&amp;= y(t) + h y'(t) + \frac{h^2}{2} y''(t) + \mathcal{O}(h^3) - y(t) - \frac{h}{2} \big( y'(t) + y'(t) + h y''(t) + \mathcal{O}(h^2) \big) \\
-&amp;= h y'(t) + \frac{h^2}{2} y''(t) - h y'(t) - \frac{h^2}{2} y''(t) + \mathcal{O}(h^3) \\
-&amp;= \mathcal{O}(h^3) \\
-\end{align*}$$<p>Therefore we conclude that the implicit trapezoidal rule is consistent of order 2.</p>
+<p>Substituting the approximation into the equation yields</p>
+$$\frac{y^{i+1} - 2 y^i + y^{i-1}}{h^2} = q(t_i) y^i + g(t_i) \iff \frac{y^{i+1} - \big(h^2 q(t_i) + 2\big) y^i + y^{i-1}}{h^2} = g(t_i) \quad \forall i = 2, \dots, n-1$$<p>and for the two boundary cases we have</p>
+$$
+\frac{y^2 - 2 y^1 + y^0}{h^2} = q(t_1) y^1 + g(t_1) \iff \frac{y^2 - \big(h^2 q(t_1) + 2\big) y^1}{h^2} = g(t_1) - \frac{\alpha}{h^2} \\
+\frac{y^{n+1} - 2 y^n + y^{n-1}}{h^2} = q(t_n) y^n + g(t_n) \iff \frac{-\big(h^2 q(t_n) + 2\big) y^n + y^{n-1}}{h^2} = g(t_n) - \frac{\beta}{h^2}.
+$$<p>Written as a linear system of equations:</p>
+$$ \frac{1}{h^2}
+\begin{pmatrix}
+    -\big(h^2 q(t_1) + 2\big) &amp; 1 &amp; 0 &amp; \cdots &amp; 0 \\
+    1 &amp; -\big(h^2 q(t_2) + 2\big) &amp; 1 &amp; &amp; \vdots \\
+    0 &amp; 1 &amp; \ddots &amp; &amp; 0 \\
+    \vdots &amp;  &amp; &amp; \ddots &amp; 1 \\
+    0 &amp; \cdots &amp; 0 &amp; 1 &amp; -\big(h^2 q(t_n) + 2\big)
+\end{pmatrix}
+\begin{pmatrix}
+    y^1 \\
+    y^2 \\
+    \vdots \\
+    y^{n-1} \\
+    y^n
+\end{pmatrix}
+=
+\begin{pmatrix}
+    g(t_1) - \frac{\alpha}{h^2} \\
+    g(t_2) \\
+    \vdots \\
+    g(t_{n-1}) \\
+    g(t_n) - \frac{\beta}{h^2}
+\end{pmatrix}
+$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+$$ $$<p>$\textrm{(ii)} \quad$ <em>Show that if</em> $q(t) &gt; 0$ <em>for all</em> $t,$ <em>the system of equations is diagonally dominant, and hence always has a unique solution.</em></p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-$$ $$<p>$\textrm{(ii)} \quad$ <em>is A-stable.</em></p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Consider $y' = \lambda y$ for $\lambda.$ A single step of the implicit trapezoidal rule for this test equation yields</p>
-$$\begin{align*}
-y^{i+1} = y^i + \frac{h}{2} \big( F(y^i) + F(y^{i+1}) \big) &amp;\iff y^{i+1} = y^i + \frac{h}{2} \big( \lambda y^i + \lambda y^{i+1} \big) \\
-&amp;\iff (1 - \frac{h \lambda}{2}) y^{i+1} = (1 + \frac{h \lambda}{2}) y^i \\
-&amp;\iff y^{i+1} = \frac{2 + h \lambda}{2 - h \lambda} y^i.
-\end{align*}$$<p>This holds for all $\lambda \in \mathbb{C}$ and $h &gt; 0.$ Thus the region of stability is $\mathcal{S} = \{ z \in \mathbb{C} \ : \ \big| \frac{2 + z}{2 - z} \big| \le 1 \},$ which is the left half plane. The implicit trapezoidal rule is therefore A-stable.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-$$ $$<p>$\textrm{(iii)} \quad$ <em>is not B-stable.</em></p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Let $\Phi(y) = y + \frac{1}{2} \big( F(y) + F(\Phi(y)) \big)$ be the implicit trapezoidal rule for $h = 1$ and consider $y' = F(y) := -y^2.$ Then we obtain</p>
-$$\begin{align*}
-\Phi(y) = y - \frac{1}{2} \big( y^2 + \Phi(y)^2 \big) &amp;\iff \frac{1}{2} \Phi(y)^2 + \Phi(y) + \frac{1}{2} y^2 - y = 0 \\
-&amp;\iff \Phi(y) = -1 \pm \sqrt{1 - y^2 - 4y}.
-\end{align*}$$<p>If we choose $y = \sqrt{5} - 2 \approx 0.24$ then $1 - y^2 - 4y = 0$ and thus $\Phi(y) = -1.$ But since $|\Phi(y) - \Phi(0)| = |\Phi(y)| = 1 &gt; \sqrt{5} - 2 = |y| = |y - 0|$ the implicit midpoint rule cannot be B-stable.</p>
+<p>The system is diagonally dominant since $\big|- q(t_i) + \frac{2}{h^2}\big| = q(t_i) + \frac{2}{h^2} &gt; \frac{2}{h^2}$ for all $i = 1, \dots, n.$</p>
 
 </div>
 </div>
