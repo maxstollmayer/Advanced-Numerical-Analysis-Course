@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Advanced Numerical Analysis Exercises - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Exercise 49 - Stollmayer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="custom.css" media="all">
 
@@ -14259,239 +14259,52 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Advanced-Numerical-Analysis">Advanced Numerical Analysis<a class="anchor-link" href="#Advanced-Numerical-Analysis">&#182;</a></h1>
-<h4 id="Exercises-solved-by-Max-Stollmayer">Exercises solved by Max Stollmayer<a class="anchor-link" href="#Exercises-solved-by-Max-Stollmayer">&#182;</a></h4>
-<br>
+<h1 id="Advanced-Numerical-Analysis">Advanced Numerical Analysis<a class="anchor-link" href="#Advanced-Numerical-Analysis">&#182;</a></h1><h2 id="Exercise-49">Exercise 49<a class="anchor-link" href="#Exercise-49">&#182;</a></h2>
 </div>
 </div>
-
-<h2>Eigenvalue problems</h2>
-
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-1"><a href="exercise1.html">Exercise 1</a><a class="anchor-link" href="#Exercise-1">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-</ul>
+<p>$\textrm{(i)} \quad$ <em>Rewrite the scalar linear second order differential operator</em> $L := \gamma(x) + \sum_j c_j(x) \partial_j + \sum_{j,k} C_{jk}(x) \partial_j \partial_k$ <em>with continuously differentiable functions</em> $\gamma, c_j$ <em>and</em> $C_{jk} = C_{kj},$ <em>in divergence form.</em></p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-2"><a href="exercise2.html">Exercise 2</a><a class="anchor-link" href="#Exercise-2">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-25 updated solution with better implementation of the sparse matrix in $(\textrm{v})$</li>
-</ul>
+<p>We say a scalar linear second order differential operator is in divergence form if there are $G_{jk}, b_j$ and $a$ such that it can be written as $a(x) + \langle b(x), D \rangle - \textrm{div}(G(x) D).$ Now we expand that form and compare coefficients with $L.$</p>
+$$\begin{align*}
+L = \gamma + \sum_j c_j \partial_j + \sum_{j,k} C_{jk} \partial_j \partial_k &amp;= a + \langle b, D \rangle - \textrm{div}(G D) \\
+&amp;= a + \sum_j b_j \partial_j - \sum_j \partial_j \bigg( \sum_k G_{jk} \partial_k \bigg) \\
+&amp;= a + \sum_j b_j \partial_j - \sum_{j,k} \big( \partial_j G_{jk} \partial_k + G_{jk} \partial_j \partial_k \big) \\
+&amp;= a + \sum_j b_j \partial_j - \sum_k \bigg( \sum_j \partial_j G_{jk} \bigg) \partial_k - \sum_{j,k} G_{jk} \partial_j \partial_k \\
+&amp;= a + \sum_j \bigg( b_j - \sum_k \partial_k G_{kj} \bigg) \partial_j + \sum_{j,k} \big(-G_{jk}\big) \partial_j \partial_k \\
+\end{align*}$$<p>Thus we obtain the equations
+$$\begin{cases}
+a = \gamma \\
+b_j - \sum_k \partial_k G_{kj} = c_j \\
+-G_{jk} = C_{jk}.
+\end{cases}$$</p>
+<p>Choosing $a = \gamma, G_{jk} = -C_{jk}$ and $b_j = c_j - \sum_k \partial_k C_{jk}$ then $L$ can be written in divergence form.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-3"><a href="exercise3.html">Exercise 3</a><a class="anchor-link" href="#Exercise-3">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-25 updated solution with the algorithm discussed in class</li>
-</ul>
+$$ $$<p>$\textrm{(ii)} \quad$ <em>Apply the resulting formula to the Laplacian in polar coordinates</em> $\Delta f(r,\varphi) = f_{rr}(r,\varphi) + r^{-1} f_r(r,\varphi) + r^{-2} f_{\varphi\varphi}(r,\varphi).$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-5"><a href="exercise5.html">Exercise 5</a><a class="anchor-link" href="#Exercise-5">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-</ul>
+<p>With $\gamma \equiv 0, c = \big(\begin{smallmatrix} r^{-1} \\ 0 \end{smallmatrix}\big)$ and $C = \big(\begin{smallmatrix} 1 &amp; 0 \\ 0 &amp; r^{-2} \end{smallmatrix}\big)$ the Laplacian can be written in the given form of $L$ from above. Therefore $\Delta f = \big(\begin{smallmatrix} r^{-1} \\ 0 \end{smallmatrix}\big) Df - \textrm{div} \bigg( \big(\begin{smallmatrix} -1 &amp; 0 \\ 0 &amp; -r^{-2} \end{smallmatrix}\big) Df \bigg)$ is the divergence form of the Laplacian.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-8"><a href="exercise8.html">Exercise 8</a><a class="anchor-link" href="#Exercise-8">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-19 updated Latex formatting</li>
-</ul>
-</div>
-</div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-10"><a href="exercise10.html">Exercise 10</a><a class="anchor-link" href="#Exercise-10">&#182;</a></h3><ul>
-<li>2021-03-17 uploaded solution</li>
-<li>2021-03-19 presented in class</li>
-<li>2021-03-19 updated Latex formatting</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-11"><a href="exercise11.html">Exercise 11</a><a class="anchor-link" href="#Exercise-11">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution, may be presented in class</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-12"><a href="exercise12.html">Exercise 12</a><a class="anchor-link" href="#Exercise-12">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-14"><a href="exercise14.html">Exercise 14</a><a class="anchor-link" href="#Exercise-14">&#182;</a></h3><ul>
-<li>2021-04-13 uploaded solution, may be presented in class</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-15"><a href="https://homepage.univie.ac.at/wissiakm16/AdvNumAnaEx15.pdf">Exercise 15</a><a class="anchor-link" href="#Exercise-15">&#182;</a></h3><ul>
-<li>2021-04-14 solved jointly with Manuel Wissiak</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-16"><a href="exercise16.html">Exercise 16</a><a class="anchor-link" href="#Exercise-16">&#182;</a></h3><ul>
-<li>2021-04-13 solved jointly with Manuel Wissiak</li>
-<li>2021-04-23 updated sparse calculation and added interpretation of results</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-18"><a href="exercise18.html">Exercise 18</a><a class="anchor-link" href="#Exercise-18">&#182;</a></h3><ul>
-<li>2021-04-14 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-19"><a href="exercise19.html">Exercise 19</a><a class="anchor-link" href="#Exercise-19">&#182;</a></h3><ul>
-<li>2021-04-21 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-20"><a href="exercise20.html">Exercise 20</a><a class="anchor-link" href="#Exercise-20">&#182;</a></h3><ul>
-<li>2021-04-21 uploaded solution</li>
-<li>2021-04-23 updated notation for the linear subspace</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-21"><a href="exercise21.html">Exercise 21</a><a class="anchor-link" href="#Exercise-21">&#182;</a></h3><ul>
-<li>2021-04-21 uploaded solution</li>
-<li>2021-04-28 updated solution according to the new exercise formulation</li>
-</ul></div></div>
-
-<h2>Ordinary differential equations</h2>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-23"><a href="exercise23.html">Exercise 23</a><a class="anchor-link" href="#Exercise-23">&#182;</a></h3><ul>
-<li>2021-04-28 uploaded solution</li>
-<li>2021-05-04 added solution to $\textrm{(iii)}$</li>
-<li>2021-05-11 corrected mistake in $\textrm{(i)}$</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-24"><a href="exercise24.html">Exercise 24</a><a class="anchor-link" href="#Exercise-24">&#182;</a></h3><ul>
-<li>2021-04-28 uploaded solution, solved jointly with Manuel Wissiak</li>
-<li>2021-04-29 added geometric interpretation in $\textrm{(ii)}$</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-25"><a href="exercise25.html">Exercise 25</a><a class="anchor-link" href="#Exercise-25">&#182;</a></h3><ul>
-<li>2021-04-28 uploaded solution, solved jointly with Manuel Wissiak</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-26"><a href="exercise26.html">Exercise 26</a><a class="anchor-link" href="#Exercise-26">&#182;</a></h3><ul>
-<li>2021-04-28 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-27"><a href="exercise27.html">Exercise 27</a><a class="anchor-link" href="#Exercise-27">&#182;</a></h3><ul>
-<li>2021-05-05 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-29"><a href="exercise29.html">Exercise 29</a><a class="anchor-link" href="#Exercise-29">&#182;</a></h3><ul>
-<li>2021-05-05 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-30"><a href="exercise30.html">Exercise 30</a><a class="anchor-link" href="#Exercise-30">&#182;</a></h3><ul>
-<li>2021-05-05 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-32"><a href="exercise32.html">Exercise 32</a><a class="anchor-link" href="#Exercise-32">&#182;</a></h3><ul>
-<li>2021-05-05 uploaded solution</li>
-<li>2021-05-07 fixed an error in the fixed point iteration of the implicit midpoint rule</li>
-<li>2021-05-11 changed fixed point iteration to Newton's method and corrected plot ranges</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-33"><a href="exercise33.html">Exercise 33</a><a class="anchor-link" href="#Exercise-33">&#182;</a></h3><ul>
-<li>2021-05-05 uploaded solutions to $\textrm{(i)}$ and $\textrm{(ii)}$</li>
-<li>2021-05-18 uploaded solution to $\textrm{(iii)}$</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-34"><a href="exercise34.html">Exercise 34 - Simple Shooting</a><a class="anchor-link" href="#Exercise-34">&#182;</a></h3><ul>
-<li>2021-05-12 uploaded solution</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-35"><a href="exercise35.html">Exercise 35 - Finite Difference Method</a><a class="anchor-link" href="#Exercise-35">&#182;</a></h3><ul>
-<li>2021-05-12 uploaded solution</li>
-<li>2021-05-18 corrected typo in system matrix</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-36"><a href="exercise36.html">Exercise 36 - van der Pol equation</a><a class="anchor-link" href="#Exercise-36">&#182;</a></h3><ul>
-<li>2021-05-18 uploaded solution</li>
-</ul></div></div>
-
-<h2>Approximation of functions</h2>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-41"><a href="https://homepage.univie.ac.at/wissiakm16/AdvNumAnaEx41.pdf">Exercise 41</a><a class="anchor-link" href="#Exercise-41">&#182;</a></h3><ul>
-<li>2021-06-02 uploaded solution, jointly with Manuel Wissiak</li>
-</ul></div></div>
-
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exercise-45"><a href="exercise45.html">Exercise 45 - Fast Fourier Transform</a><a class="anchor-link" href="#Exercise-45">&#182;</a></h3><ul>
-<li>2021-06-02 uploaded solution, jointly with Manuel Wissiak</li>
-</ul></div></div>
-
-<h2>Partial differential equations</h2>
-
-<div class="jp-Cell-inputWrapper">
-<div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3><a href="exercise49.html">Exercise 49</a></h3>
-<ul><li>2021-06-09 uploaded solution</li></ul>
-</div></div>
-
-<div class="jp-Cell-inputWrapper">
-<div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3><a href="exercise50.html">Exercise 50 - Error of central finite differences</a></h3>
-<ul><li>2021-06-08 uploaded solution</li>
-<li>2021-06-09 corrected a mistake in the calculation of $C$</li></ul>
-</div></div>
-
-<div class="jp-Cell-inputWrapper">
-<div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3><a href="exercise51.html">Exercise 51 - Finite difference method for the Poisson equation</a></h3>
-<ul><li>2021-06-08 uploaded solution</li></ul>
-</div></div>
-
-
-
 </body>
+
+
+
+
+
+
+
 </html>

@@ -14277,10 +14277,10 @@ $$\begin{align*}
 |h^2 f''(x) - \Delta_h f(x)| &amp;= |h^2 f''(x) - f(x+h) + 2 f(x) - f(x-h)| \\
 &amp; \begin{split} = \big|h^2 f''(x) - \big( f(x) + h f'(x) + \frac{h^2}{2} f''(x) + \frac{h^3}{6} f'''(x) + \frac{h^4}{24} f^{(4)}(\xi) \big) \\
 + 2 f(x) - \big( f(x) - h f'(x) + \frac{h^2}{2} f''(x) - \frac{h^3}{6} f'''(x) + \frac{h^4}{24} f^{(4)}(\eta) \big) \big| \end{split} \\
-&amp;= \big|h^2 f''(x) - h^2 f''(x) - \frac{h^4}{12} \big( f^{(4)}(\xi) + f^{(4)}(\eta) \big) \big| \\
-&amp;=  \frac{h^4}{12} \big| f^{(4)}(\xi) + f^{(4)}(\eta) \big| \\
-&amp;\le \frac{h^4}{6} |\!|f^{(4)}|\!|_\infty
-\end{align*}$$<p>Therefore the inequality holds with $C = \frac{1}{6}.$</p>
+&amp;= \big|h^2 f''(x) - h^2 f''(x) - \frac{h^4}{24} \big( f^{(4)}(\xi) + f^{(4)}(\eta) \big) \big| \\
+&amp;=  \frac{h^4}{24} \big| f^{(4)}(\xi) + f^{(4)}(\eta) \big| \\
+&amp;\le \frac{h^4}{12} |\!|f^{(4)}|\!|_\infty
+\end{align*}$$<p>Therefore the inequality holds with $C = \frac{1}{12}.$</p>
 
 </div>
 </div>
@@ -14293,8 +14293,8 @@ $$ $$<p>$\textrm{(ii)} \quad$ <em>Check the quality of the error bound by evalua
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Since $f^{(4)} \equiv 0$ for $k = 1,2,3$ we have the trivial inequality $0 \le 0.$</p>
-<p>For $k=4$ we obtain $|h^2 f''(x) - \Delta_h f(x)| = |12 h^2 x^2 - 2 h^4 - 12 h^2 x^2| = 2 h^4$ and $C h^4 |\!|f^{(4)}|\!|_\infty = \frac{h^4}{6} f^{(4)}(1) = 4 h^4$. Thus the ratio is $\frac{|h^2 f''(x) - \Delta_h f(x)|}{C h^4 ||f^{(4)}||_\infty} = \frac{1}{2} \le 1.$</p>
-<p>Analogously we get $\frac{10 h^4 |x|}{20 h^4} \le \frac{10 h^4}{20 h^4} = \frac{1}{2} \le 1$ for $k = 5$ and $\frac{2 h^4 |15 x^2 + h^2|}{60 h^4} \le \frac{h^2 + 15}{30} \le 1$ if $0 &lt; h \le \sqrt{15}$ for $k = 6.$</p>
+<p>For $k=4$ we obtain $|h^2 f''(x) - \Delta_h f(x)| = |12 h^2 x^2 - 2 h^4 - 12 h^2 x^2| = 2 h^4$ and $C h^4 |\!|f^{(4)}|\!|_\infty = \frac{h^4}{12} f^{(4)}(1) = 2 h^4$. Thus the ratio is $\frac{|h^2 f''(x) - \Delta_h f(x)|}{C h^4 ||f^{(4)}||_\infty} = 1 \le 1.$</p>
+<p>Analogously we get $\frac{10 h^4 |x|}{10 h^4} \le \frac{10 h^4 (1-h)}{10 h^4} = 1-h \le 1$ for $k = 5$ and $\frac{2 h^4 |15 x^2 + h^2|}{30 h^4} \le \frac{15 (1-h)^2 + h^2}{15} = \frac{16}{15}h^2 - 2h + 1 \le 1$ if $0 \le h \le \frac{15}{8}$ for $k = 6.$</p>
 
 </div>
 </div>
